@@ -46,10 +46,15 @@ public class ContaBancaria{
 
     public Double sacar(double valor){
         if(valor > this.saldo){
-            throw new InputMismatchException("O saldo é insuficiente");    
+            throw new InputMismatchException("O saldo é insuficiente");
         }
         this.saldo -= valor;
         return valor;        
+    }
+
+    public void transferir(double valor, ContaBancaria contaDestino){
+        this.sacar(valor);
+        contaDestino.depositar(valor);
     }
     
     
