@@ -1,12 +1,15 @@
 package src.model;
 
+import java.util.Date;
 import java.util.InputMismatchException;
 
-public class ContaBancaria{
+public abstract class ContaBancaria{
     private String agencia;
     private String conta;
     private int digito;
     private double saldo;
+    private Date dataAbertura;
+
     private double VALOR_MINIMO_DEPOSITO = 10.0;
 
     public ContaBancaria(String agencia, String conta, int digito, double saldoInicial) {
@@ -14,7 +17,9 @@ public class ContaBancaria{
         this.conta = conta;
         this.digito = digito;
         this.saldo = saldoInicial;
+        this.dataAbertura = new Date();
     }
+    
     public String getAgencia() {
         return agencia;
     }
@@ -35,6 +40,10 @@ public class ContaBancaria{
     }
     public double getSaldo() {
         return saldo;
+    }
+
+    public Date getDataAbertura() {
+        return dataAbertura;
     }
     
     public void depositar(double valor){

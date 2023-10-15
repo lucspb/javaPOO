@@ -1,7 +1,10 @@
 package src;
 
+import java.util.Date;
+
 import src.model.ContaCorrente;
 import src.model.ContaPoupanca;
+import src.utils.DataUtil;
 
 public class App {
     public static void main(String[] args) {
@@ -15,11 +18,21 @@ public class App {
         conta1.depositar(50.0);
         System.out.println("Saldo após depósito: " + conta1.getSaldo());
         System.out.println();
-        double saque = conta1.sacar(20.0);
+        conta1.sacar(20.0);
         System.out.println("Saldo após saque: " + conta1.getSaldo());
         System.out.println();
         conta2.transferir(40.0, conta1);
         System.out.println("Saldo da conta 1 após transferencia: " + conta1.getSaldo());
+        System.out.println();
         System.out.println("Saldo da conta 2 após transferencia: " + conta2.getSaldo());
+        System.out.println();
+        System.out.println("Data de abertura da conta 2: " + conta2.getDataAbertura());
+
+        var dataFormatada = DataUtil.converterData(conta1.getDataAbertura());
+        System.out.println("Data atual: " + dataFormatada);
+
+        var horaFormatada = DataUtil.converterHora(conta2.getDataAbertura());
+        System.out.println("Hora atual: " + horaFormatada);
+
     }
 }
