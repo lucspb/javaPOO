@@ -1,9 +1,10 @@
 package src;
 
-import java.util.Date;
+import java.util.Scanner;
 
 import src.model.ContaCorrente;
 import src.model.ContaPoupanca;
+import src.model.Movimentacao;
 import src.utils.DataUtil;
 
 public class App {
@@ -18,10 +19,13 @@ public class App {
         conta1.depositar(50.0);
         System.out.println("Saldo após depósito: " + conta1.getSaldo());
         System.out.println();
-        conta1.sacar(20.0);
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Digite o valor do saque");
+        double valorSaque = scan.nextDouble();
+        conta1.sacar(valorSaque);
         System.out.println("Saldo após saque: " + conta1.getSaldo());
         System.out.println();
-        conta2.transferir(40.0, conta1);
+        conta2.transferir(40.0, conta1);    
         System.out.println("Saldo da conta 1 após transferencia: " + conta1.getSaldo());
         System.out.println();
         System.out.println("Saldo da conta 2 após transferencia: " + conta2.getSaldo());
@@ -34,5 +38,9 @@ public class App {
         var horaFormatada = DataUtil.converterHora(conta2.getDataAbertura());
         System.out.println("Hora atual: " + horaFormatada);
 
+        Movimentacao movimentacao = new Movimentacao("saque", valorSaque);
+        System.out.println(movimentacao);
+
+        System.out.println(movimentacao.toString());
     }
 }
