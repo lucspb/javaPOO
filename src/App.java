@@ -38,9 +38,12 @@ public class App {
         var horaFormatada = DataUtil.converterHora(conta2.getDataAbertura());
         System.out.println("Hora atual: " + horaFormatada);
 
-        Movimentacao movimentacao = new Movimentacao("saque", valorSaque);
-        System.out.println(movimentacao);
-
-        System.out.println(movimentacao.toString());
+        //Conta corrente
+        conta2.imprimirExtrato();
+        System.out.println();
+        System.out.println();
+        System.out.println();
+        //conta poupança
+        conta1.imprimirExtrato();
     }
 }
