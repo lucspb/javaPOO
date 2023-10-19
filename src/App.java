@@ -1,5 +1,6 @@
 package src;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 import src.model.ContaCorrente;
@@ -19,10 +20,7 @@ public class App {
         conta1.depositar(50.0);
         System.out.println("Saldo após depósito: " + conta1.getSaldo());
         System.out.println();
-        Scanner scan = new Scanner(System.in);
-        System.out.println("Digite o valor do saque");
-        double valorSaque = scan.nextDouble();
-        conta1.sacar(valorSaque);
+        conta1.sacar(10);
         System.out.println("Saldo após saque: " + conta1.getSaldo());
         System.out.println();
         conta2.transferir(40.0, conta1);    
@@ -45,5 +43,42 @@ public class App {
         System.out.println();
         //conta poupança
         conta1.imprimirExtrato();
+
+        ArrayList<ContaPoupanca> cp = new ArrayList<ContaPoupanca>();
+
+        ContaPoupanca conta3 = new ContaPoupanca("0001", "34351", 9, 0);
+        ContaPoupanca conta4 = new ContaPoupanca("0001", "55555", 3, 50);
+        ContaPoupanca conta5 = new ContaPoupanca("0001", "23543", 4, 120);
+
+        cp.add(conta1);
+        cp.add(conta3);
+        cp.add(conta4);
+        cp.add(conta5);
+
+        cp.stream().count();
+        
+        // limita até o indice 2 do array e retorna o saldo deles
+        cp.stream()
+        .limit(2)
+        .forEach(c -> System.out.println(c.getSaldo()));
+        
+        System.out.println();
+        System.out.println();
+        //pula as duas primeiras contas do array e retorna o saldo deles
+        cp.stream()
+        .skip(2)
+        .forEach(c -> System.out.println(c.getSaldo()));
+
+        System.out.println();
+        System.out.println();
+
+        // filtro de contas por saldo maior que 100
+        cp.stream().
+        filter(c -> c.getSaldo() > 100)
+        .forEach(c -> System.out.println(c.getSaldo()));
+
+        // retorna apenas as contas
+        cp.stream().map(c -> c.getConta());
+        cp.stream().map(ContaPoupanca::getConta);
     }
 }
